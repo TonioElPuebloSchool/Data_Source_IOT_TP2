@@ -34,7 +34,8 @@ def train_model():
     df = pd.read_csv('data/train.csv')
     X = df.drop('Species', axis=1)
     y = df['Species']
-    model = RandomForestClassifier()
+    with open('src/config/model_parameters.json') as fh:
+        params = json.load(fh)
+    model = RandomForestClassifier(**params)
     model.fit(X, y)
-    # save the model into src/models
-    joblib.dump(model, 'src/models/model.pkl')
+    joblib.dump(model, 'models/model.joblib')

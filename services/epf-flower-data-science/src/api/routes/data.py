@@ -1,11 +1,19 @@
 from fastapi import APIRouter
 from src.schemas.message import MessageResponse
-from src.services.data import download_dataset
+from src.services.data import download_dataset, load_iris_dataset, process_data
 
 
 router = APIRouter()
 
+@router.get("/download_dataset")
+def download():
+    return download_dataset()
 
-@router.get("/hello/{name}", name="Demo route", response_model=MessageResponse)
-def hello(name: str) -> MessageResponse:
-    return MessageResponse(message=f"Hello {name}, from fastapi test route !")
+@router.get("/loading_dataset")
+def loading():
+    return load_iris_dataset()
+
+@router.get("/process_data")
+def process():
+    return process_data()
+

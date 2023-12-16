@@ -34,8 +34,9 @@ def train_model():
     df = pd.read_csv('data/train.csv')
     X = df.drop('Species', axis=1)
     y = df['Species']
-    with open('src/config/model_parameters.json') as fh:
+    with open('services/epf-flower-data-science/src/config/model_parameters.json') as fh:
         params = json.load(fh)
     model = RandomForestClassifier(**params)
     model.fit(X, y)
-    joblib.dump(model, 'models/model.joblib')
+    joblib.dump(model, 'services/epf-flower-data-science/src/models/model.pkl')
+    

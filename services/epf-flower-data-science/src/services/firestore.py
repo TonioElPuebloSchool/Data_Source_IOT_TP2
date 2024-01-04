@@ -10,7 +10,7 @@ class FirestoreClient:
     def __init__(self) -> None:
         """Init the client."""
         
-        self.client = firestore.Client.from_service_account_json('services/epf-flower-data-science/src/config/api-5a-firebase-adminsdk-g30qh-dd4ca83ef5.json')
+        self.client = firestore.Client.from_service_account_json('services/epf-flower-data-science/src/config/datasourceapi-b7fac-firebase-adminsdk-53gb4-757878c47f.json')
 
     def get(self, collection_name: str, document_id: str) -> dict:
         """Find one document by ID.
@@ -20,8 +20,7 @@ class FirestoreClient:
         Return:
             Document value.
         """
-        doc = self.client.collection(
-            collection_name).document(document_id).get()
+        doc = self.client.collection(collection_name).document(document_id).get()
         if doc.exists:
             return doc.to_dict()
         raise FileExistsError(

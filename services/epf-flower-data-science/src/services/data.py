@@ -23,6 +23,7 @@ def process_data():
     df[numeric_columns] = scaler.fit_transform(df[numeric_columns])
     return df.to_dict(orient='records')
 
+
 def split_train_test(test_size=0.2, random_state=42):
     df = pd.read_csv('data/Iris.csv')
     train_df, test_df = train_test_split(df, test_size=test_size, random_state=random_state)
@@ -32,11 +33,18 @@ def split_train_test(test_size=0.2, random_state=42):
 
 def train_model():
     df = pd.read_csv('data/train.csv')
-    X = df.drop('Species', axis=1)
+    X = df.drop(['Species', 'Id'], axis=1)
     y = df['Species']
     with open('services/epf-flower-data-science/src/config/model_parameters.json') as fh:
         params = json.load(fh)
     model = RandomForestClassifier(**params)
     model.fit(X, y)
     joblib.dump(model, 'services/epf-flower-data-science/src/models/model.pkl')
+    
+def predict_model(SepalLengthCm, SepalWidthCm, PetalLengthCm, PetalWidthCm):
+    model = joblib.load('services/epf-flower-data-science/src/models/model.pkl')
+    prediction = model.predict([[SepalLengthCm, SepalWidthCm, PetalLengthCm, PetalWidthCm]])
+    return prediction[0]
+ 
+ 
     

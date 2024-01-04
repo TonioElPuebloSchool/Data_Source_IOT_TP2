@@ -23,3 +23,7 @@ def split(test_size: float = 0.2, random_state: int = 42):
 @router.get("/train_model")
 def train():
     return data.train_model()
+
+@router.get("/predict_model")
+def predict(SepalLengthCm: float, SepalWidthCm: float, PetalLengthCm: float, PetalWidthCm: float):
+    return data.predict_model(SepalLengthCm, SepalWidthCm, PetalLengthCm, PetalWidthCm)

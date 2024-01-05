@@ -1,0 +1,7 @@
+{
+    "python.testing.pytestArgs": [
+        "services/epf-flower-data-science/tests/unit/api/routes"
+    ],
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestEnabled": true
+}

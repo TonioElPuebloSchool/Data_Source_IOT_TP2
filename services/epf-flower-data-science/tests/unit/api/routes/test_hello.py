@@ -9,7 +9,7 @@ class TestHelloRoute:
         Test client for integration tests
         """
 
-        from main import get_application
+        from services.epf_flower_data_science.main import get_application
 
         app = get_application()
 

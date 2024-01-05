@@ -1,6 +1,7 @@
 import pytest
 from fastapi.testclient import TestClient
-
+import sys
+from pathlib import Path
 
 class TestHelloRoute:
     @pytest.fixture
@@ -8,6 +9,8 @@ class TestHelloRoute:
         """
         Test client for integration tests
         """
+        # Add the directory containing main.py to Python's path
+        sys.path.insert(0, str(Path(__file__).resolve().parents[2]))
 
         from main import get_application
 

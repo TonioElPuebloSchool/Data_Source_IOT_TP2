@@ -27,4 +27,5 @@ jobs:
 
     - name: Run tests
       run: |
+        cd services/epf-flower-data-science
         pytest tests/unit/api/routes

@@ -8,5 +8,3 @@ scikit-learn
 pytest
 pandas
 httpx
-sys
-pathlib

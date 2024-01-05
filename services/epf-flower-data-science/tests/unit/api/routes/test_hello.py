@@ -19,7 +19,7 @@ class TestHelloRoute:
         # Setup some test data
         name = "testuser"
         url = f"/hello/{name}"
-
+        
         # Call the function to be tested
         response = client.get(url)
 

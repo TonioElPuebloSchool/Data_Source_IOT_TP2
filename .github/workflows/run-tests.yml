@@ -29,3 +29,6 @@ jobs:
       run: |
         cd services/epf-flower-data-science
         pytest tests/unit/api/routes
+      env:
+        KAGGLE_USERNAME: ${{ secrets.KAGGLE_USERNAME }}
+        KAGGLE_KEY: ${{ secrets.KAGGLE_KEY }}

@@ -19,6 +19,12 @@ jobs:
       with:
         python-version: 3.8
 
+    - name: Create service account key file
+      run: |
+        echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}' > ./services/epf-flower-data-science/src/config/datasourceapi-b7fac-firebase-adminsdk-53gb4-757878c47f.json
+      env:
+        FIREBASE_SERVICE_ACCOUNT_KEY: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_KEY }}
+
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip

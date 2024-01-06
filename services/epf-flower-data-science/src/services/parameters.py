@@ -4,6 +4,7 @@ from src.services.firestore import FirestoreClient
 from sklearn.ensemble import RandomForestClassifier
 import joblib
 import pandas as pd
+import os 
 
 from fastapi import FastAPI
 
@@ -37,7 +38,12 @@ def train_model_with_firestore(key: str):
         key (str): The ID of the document containing the parameters to use for training.
     """
     # Load the training data
-    df = pd.read_csv('data/train.csv')
+    relative_path = 'data/train.csv'
+    if 'GITHUB_WORKSPACE' in os.environ:
+        data_file = os.path.join(os.environ['GITHUB_WORKSPACE'], relative_path)
+    else:
+        data_file = relative_path
+    df = pd.read_csv(data_file)
     # Initialize a Firestore client
     firestore_client = FirestoreClient()
     

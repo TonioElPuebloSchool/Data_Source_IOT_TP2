@@ -1,3 +1,4 @@
+import os
 import google.auth
 from google.cloud import firestore
 
@@ -9,9 +10,13 @@ class FirestoreClient:
 
     def __init__(self) -> None:
         """Init the client."""
+        relative_path = 'services/epf-flower-data-science/src/config/datasourceapi-b7fac-firebase-adminsdk-53gb4-757878c47f.json'
+        if 'GITHUB_WORKSPACE' in os.environ:
+            service_account_key_file = os.path.join(os.environ['GITHUB_WORKSPACE'], relative_path)
+        else:
+            service_account_key_file = relative_path
+        self.client = firestore.Client.from_service_account_json(service_account_key_file)
         
-        self.client = firestore.Client.from_service_account_json('services/epf-flower-data-science/src/config/datasourceapi-b7fac-firebase-adminsdk-53gb4-757878c47f.json')
-
     def get(self, collection_name: str, document_id: str) -> dict:
         """Find one document by ID.
         Args:

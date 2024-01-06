@@ -11,3 +11,4 @@ httpx
 google-auth
 google-cloud
 google-cloud-firestore
+os
